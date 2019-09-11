@@ -1,0 +1,52 @@
+Astapor,1302,1154
+Barrowtown,335,513
+Braavos,724,629
+Castle Black,481,265
+The Crag,275,755
+Dragonstone,587,800
+The Dreadfort,512,404
+The Eyrie,518,694
+Faircastle,249,775
+Gulltown,605,715
+Harrenhal,454,767
+Highgarden,316,970
+King's Landing,489,853
+Kosrak,1534,1043
+Lannisport,258,825
+Lorath,824,655
+Lotus Port,666,1380
+Lys,736,1099
+Meereen,1355,1040
+Moat Cailin,412,547
+Mantarys,1124,1082
+Morosh,1163,647
+Myr,773,980
+Norvos,862,771
+Old Ghis,1322,1250
+Oldtown,257,1037
+Pentos,730,844
+Pyke,263,707
+Qarth,1720,1243
+Qohor,984,845
+Riverrun,375,743
+The Sorrows,899,970
+Storm's End,563,937
+Sunspear,603,1097
+The Twins,393,658
+Tyrosh,674,995
+Vaes Dothrak,1598,786
+Vaes Diaf,1346,938
+Vaes Khadokh,1092,841
+Vaes Leisi,1467,651
+Valyria,1080,1299
+Vojjor Samui,1309,848
+Volantis,957,1105
+White Harbor,463,524
+Winterfell,410,422
+Yunkai,1321,1070
+Elbow1,463,571
+Elbow2,458,635
+Elbow3,545,850
+Elbow4,387,997
+Elbow5,390,1061
+Elbow6,643,1095
