@@ -55,7 +55,7 @@ public class Graph {
 		
 	/**
 	 * NEW FOR DJIKSTRA
-	 * 
+	 * Referenced and modified from Lecturer provided code
 	 */
 public Path djikstra(GraphNode startNode, GraphNode lookingfor, int selection){
 	Path cp=new Path(); 				//Create result object for cheapest path
@@ -112,12 +112,12 @@ public Path djikstra(GraphNode startNode, GraphNode lookingfor, int selection){
 }
 
 /**
- * NEW FOR DJIKSTRA
+ *  Multipath variation of dkikstra algorigthm
  * 
  */
 public Path djikstra2(GraphNode startNode, GraphNode lookingfor, ArrayList<GraphNode> nodesToAvoid){
 	
-	for(GraphNode nodeToAvoid : nodesToAvoid) {
+	for(GraphNode nodeToAvoid : nodesToAvoid) { // remove all edges that could lead to nodes to avoid
 		removeEdgesInvolvingAvoid(nodeToAvoid);
 	}
 	
@@ -174,7 +174,13 @@ public Path djikstra2(GraphNode startNode, GraphNode lookingfor, ArrayList<Graph
 	while(!unencountered.isEmpty());
 	return null; 											//No path found, so return null
 }
-		
+
+/**
+* Multipath generator, calls djikstra to generate a path, then removes a node on that path and generates a new path to the 
+* destination up to three times 
+* 
+* @return manyPaths A ;list of up to three valid distinct paths from origin to destination
+*/
 public ArrayList<Path> multiPath(GraphNode start, GraphNode dest, ArrayList<GraphNode> nodesToAvoid)
 {
 	ArrayList<Path> manyPaths = new ArrayList<Path>();
@@ -196,7 +202,10 @@ public ArrayList<Path> multiPath(GraphNode start, GraphNode dest, ArrayList<Grap
 
 	return manyPaths;	
 }
-
+	
+	/* 
+	* Selects a semi-random node from the given path and reomves edges involving that from the graph
+	*/
 	public boolean trimNodeListBasic(Path previousPath)
 	{
 		Random numGen = new Random();
@@ -206,8 +215,7 @@ public ArrayList<Path> multiPath(GraphNode start, GraphNode dest, ArrayList<Grap
 		if(indexToTrim >= previousPath.getNodeList().size()) indexToTrim = previousPath.getNodeList().size() -2;
 		if(indexToTrim == 0) indexToTrim++;
 
-//		if(previousPath.getNodeList().get(indexToTrim).getAdjacentNodesAsList().size()>=2)
-//		{
+	{
 		GraphNode nodeToRemove = previousPath.getNodeList().get(indexToTrim);
 		
 		
@@ -216,12 +224,13 @@ public ArrayList<Path> multiPath(GraphNode start, GraphNode dest, ArrayList<Grap
 		
 		return true;
 	}
-
+	
+	/*
+	* Takes a specific node and removes any edges connected to that node from the graph
+	*/
 	public void removeEdgesInvolvingAvoid(GraphNode nodeToAvoid)
 	{
-//		if(nodeCache.contains(nodeToAvoid)) {
-//			nodeCache.add(nodeToAvoid);
-//		}
+
 		for(GraphNode nodeToRemoveEdgesFrom : graphOfAllNodes) { //get each node in the overall graph
 				//prepare an iterator over that nodes hashmap of noe/edge pairs
 				Iterator<GraphNode> iterator = nodeToRemoveEdgesFrom.getAdjacentNodes().keySet().iterator();
@@ -237,7 +246,9 @@ public ArrayList<Path> multiPath(GraphNode start, GraphNode dest, ArrayList<Grap
 	}
 	
 
-	
+	/*
+	* Takes  a list of nodes and removes edges involving each node from the graph
+	*/
 	public Graph removeNodesFromGraph(ArrayList<GraphNode> nodesToAvoid)
 	{
 		for(GraphNode nodeToAvoid: nodesToAvoid) {
