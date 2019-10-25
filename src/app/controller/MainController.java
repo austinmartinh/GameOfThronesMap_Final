@@ -114,12 +114,9 @@ public class MainController {
 
 		File selectedList = csvLoader.showOpenDialog(null);
 
-//		try {
-			allNodes.setGraphOfAllNodes((csv.readEdgesToGraph(allNodes.getGraphOfAllNodes(),selectedList)));	//read file and generate arraylist to populate allnode list with
-//
-//		} catch (Exception iOException) {
-//			System.out.print("file invalid");
-//		}
+
+		allNodes.setGraphOfAllNodes((csv.readEdgesToGraph(allNodes.getGraphOfAllNodes(),selectedList)));	//read file and generate arraylist to populate allnode list with
+
 	}
 	
 	/**
@@ -146,7 +143,7 @@ public class MainController {
 	}
 	
 	/**
-	 * Loads previously saved dining menu from xml file
+	 * Loads previously saved graph from xml file
 	 * @Log Added in V2
 	 * 
 	 * @throws ClassNotFoundException 
@@ -167,7 +164,7 @@ public class MainController {
     }
 	
 	/**
-	 * saves dining menu to xml
+	 * saves graph to xml
 	 * @Log Added in V2
 	 * @throws Exception
 	 */
@@ -266,6 +263,10 @@ public int routeSelection()
 		allNodes.assignEdgesToNodes();
 	}
 	
+	/**
+	*  builds an arraylist of nodes to visit in pathbuilding from the list of node names
+	* @return A list of nodes that must be included in the path
+	*/
 	public ArrayList<GraphNode> getViaFromList()
 	{
 		ArrayList<GraphNode> nodesToVia = new ArrayList<GraphNode>();
@@ -283,8 +284,8 @@ public int routeSelection()
 	}	
 	
 	/**
-	 * builds an arraylist of nodes from the list of node names
-	 * @return
+	 * builds an arraylist of nodes to avoid in pathbuilding from the list of node names
+	 * @return nodesToRemove A list of nodes that may not be included in the final path
 	 */
 	public ArrayList<GraphNode> getAvoidsFromList()
 	{
@@ -316,6 +317,12 @@ public int routeSelection()
 //		return graph.removeNodesFromGraph(nodesToAvoid);
 //	}
 //	
+	
+	/*
+	* Final method for path creation, responsible for calling many other methods to build lists of
+	* nodes to via and avoid, then call relevent pathbuilding method, then draw methods
+	*
+	*/
 	public void findAPathDjikstra()
 	{
 		clearEdges();
@@ -357,6 +364,9 @@ public int routeSelection()
 		drawCities(allNodes);
 	}
 	
+	/*
+	* As Djikstra1 but generates multiple valid paths. 
+	*/
 	public void findAPathDjikstra2()
 	{
 		clearEdges();
@@ -406,7 +416,11 @@ public int routeSelection()
 		return mergedPath;
 	}
 	
-
+	/*
+	* Method responsible for generating paths between origin and via, then endpoint of first path and via...eventually pathing
+	* endpoint of n-1th path and destination of full path. Merges paths as loop proceeds then returns the full path 
+	* from origin to destination
+	*/
 	public Path findAPathWithVias(GraphNode origin, GraphNode destination, int selection)
 	{
 	
@@ -435,9 +449,6 @@ public int routeSelection()
 			
 			currentPath = mergePaths(currentPath, path2);
 		}	
-		
-		
-		
 		return currentPath;
 	}
 
