@@ -12,11 +12,15 @@ import java.util.Random;
 
 
 public class Graph {
-
+	/*
+	* Declare list of nodes and a list of edges as the basic structure of the graph
+	*/
 	private ArrayList<GraphNode> graphOfAllNodes = new ArrayList<GraphNode>();
 	private ArrayList<Edge> listOfAllEdges = new ArrayList<Edge>();
 	
-	
+	/*
+	* Method which iterates over 
+	*/
 	public void assignEdgesToNodes()
 	{
 		
@@ -46,7 +50,6 @@ public class Graph {
 	
 			origin.getAdjacentNodes().put(destination, edge);
 			
-			//Edge origin and destination may need to be swapped here			
 			Edge oppositeDirectionEdge = new Edge(edge.getDistance(),edge.getDanger(),edge.getDifficulty(),edge.getDestination(),edge.getOrigin());
 			destination.getAdjacentNodes().put(origin, oppositeDirectionEdge); 
 		}
